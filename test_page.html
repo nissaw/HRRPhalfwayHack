@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Test</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+<nav>
+</nav>
+<div class='container'>
+	<h1 id="test">The Test</h1>
+</div>
+
+<div class='container'>
+
+	<button id="start">Start Now</button>
+
+	<div class='inprogress'>
+		<h1 id='current'>Question</h1>
+		<div class='agreedisagree'>
+				<input type="radio" name="agreedisagree" value="agree">Agree</input>
+				<input type="radio" name="agreedisagree" value="disagree">Disagree</input>
+		</div>
+
+		<div>
+				<button type="submit" id="submit">Submit Answer</button>
+
+		</div>
+	</div>
+
+	<button id="finish">End Test</button>
+</div>
+
+<div class='output'>
+	<p class='questions_answered'></p>
+	<p class='final_result'></p>
+</div>
+<div id='question_bank' visibility: 'hidden'>
+</div>
+   <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+   <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

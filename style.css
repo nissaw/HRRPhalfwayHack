@@ -1,0 +1,25 @@
+
+* {
+	background-color:#797B7B;
+	color: #FAFFFF;
+	font-family: Century Gothic;
+}
+
+Title {
+	font-size: 20px;
+	color: blue;
+}
+
+.team {
+	border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	padding-top: 100px;
+}
+
+.row {
+    padding-left: 120px;
+    padding-right: 120px;
+    clear: both;
+
+}
