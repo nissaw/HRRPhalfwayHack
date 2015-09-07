@@ -13,7 +13,7 @@ myersBriggs[0] = {
 	questionNumber: 1,
 	text: "You are almost never late for your appointments.",
 	answer: undefined,
-	timeElasped: undefined,
+	timeElapsed: undefined,
 	distance: undefined,
 	answerCode: undefined,
 	completed: false
@@ -23,7 +23,7 @@ myersBriggs[1] = {
 	questionNumber: 2,
 	text: "You enjoy having a wide circle of acquaintances.",
 	answer: undefined,
-	timeElasped: undefined,
+	timeElapsed: undefined,
 	distance: undefined,
 	answerCode: undefined,
 	completed: false
@@ -33,36 +33,42 @@ myersBriggs[2] = {
 	questionNumber: 3,
 	text: "Strict observance of the established rules is likely to prevent attaining a good outcome.",
 	answer: undefined,
-	timeElasped: undefined,
+	timeElapsed: undefined,
 	distance: undefined,
 	answerCode: undefined,
-	completed: true
+	completed: false
 };
 
 // the text of all questions is appended to the DOM (in a hidden div) and a property 'key' is added with a value = to (question # - 1)
-for (var i = 0; i < myersBriggs.length; i++) {
-	$('#question_bank').append('<p>'+ myersBriggs[i]['text'] + '</p>').data('key', i);
-}
+// for (var i = 0; i < myersBriggs.length; i++) {
+// 	$('#question_bank').append('<p>'+ myersBriggs[i]['text'] + '</p>').data('key', i);
+// }
 
 // global variable
 var answeredQuestions = [],
 	notAnswered = [],
 	current_q_num,
 	startTime,
-	endTime;
+	endTime,
+	timeElapsed;
 
 
 // function will filter the array into two new arrays: notAnswered and answeredQuestions.
 // commented out code will remove from the DOM a question that has been answered / use filter
 
 var not_answered = function() {
+	notAnswered = [];
 	for (var i = 0; i < myersBriggs.length; i++) {
 		if (myersBriggs[i]['completed']) {
 			answeredQuestions.push(myersBriggs[i]);
-			// $('#question_bank').remove('<p>' + myersBriggs[i] + '</p>')
+			//$('#question_bank').remove('<p>' + myersBriggs[i] + '</p>')
 		} else {
 			notAnswered.push(myersBriggs[i]);
 		}
+	}
+	if (notAnswered.length == 0) {
+		$('.inprogress').hide();
+		$('#test_completed').text('You have completed this Test')
 	}
 	return notAnswered;
 }
@@ -78,34 +84,50 @@ var random =function(){
 
 // Start Button is Clicked - First RANDOM UNANSWERED Question Appears
 
-var click_start = $('#start').click(function(e) {
-	console.log(e)
+$('#start').click(function(e) {
 	startTime = e.timeStamp;
 	e.preventDefault();
 	not_answered();
 	random();
+	$('input[name=agreedisagree]').removeAttr('checked');
+	$('#start').text('Next Question')
 	$('.inprogress').show();
 })
 
 // The CODE WORKS UP TO THIS POINT! :)
 
-$('#sumbit').click(function(e) {
-	//if ($('.agreedisagree')// { confirm radio button has been selected}
-	endTime = e.timeStamp;
-	return endTime;
-		//myersBriggs[$(this).data('key')]['timeElasped'] = timeElasped;
+$('#submit').click(function(e) {
+	e.preventDefault();
+	// if ($('input[name='agreedisagree']'.is(':checked'))) {//if ($('.agreedisagree')// { confirm radio button has been selected}
+	// 	$('#answer_req').text('');
+		endTime = e.timeStamp;
+		elapsed();
+		recorder();
+		return endTime;
+	// }
+	// else {
+	// 	$('#answer_req').text('Please Provide an Answer')
+		//myersBriggs[$(this).data('key')]['timeElapsed'] = timeElapsed;
+	//}
 })
+// $('input[name=agreedisagree]:checked').val(); // which radio button is selected
+// $('input[name=agreedisagree]').removeAttr('checked'); // clears check between
+// here variables are recorded
+
+function recorder() {
+	for (var i = 0; i < myersBriggs.length; i++) {
+		if (current_q_num == myersBriggs[i]['questionNumber']){
+			myersBriggs[i]['timeElapsed'] = timeElapsed;
+			myersBriggs[i]['completed'] = true;
+			myersBriggs[i]['answer'] = $('input[name=agreedisagree]:checked').val();
+		}
+	}
+}
 
 function elapsed() {
-	var timeElapsed = endTime - startTime;
-	console.log(timeElapsed);
+	timeElapsed = endTime - startTime;
 	return timeElapsed;
 }
 
 
-	// assign timeEla[sed to the correct object]
-		// for (var i = 0; i < myersBriggs.length; i++) {
-		// 	if (current_q_num === myersBriggs[i]['questionNumber']){
-		// 		myersBriggs[i]['timeElasped'] = timeElasped;
-		// 	}
 

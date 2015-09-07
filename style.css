@@ -3,23 +3,69 @@
 	background-color:#797B7B;
 	color: #FAFFFF;
 	font-family: Century Gothic;
+	font-size: 1.1vw;
+	text-align: center;
 }
 
-Title {
-	font-size: 20px;
-	color: blue;
+h1 {
+	font-size: 2.3vw	;
+	font-weight: 800;
+	text-align: center;
+}
+
+.body {
+	width: 100%;
+	text-align: center;
+}
+
+.row{
+    text-align: justify;
+    text-indent: 25px;
+}
+
+.unlike {
+    	color: #004C80;
+    	font-size:  1.5em;
+    	font-weight: 900vw;
+}
+
+.room {
+	background-color: white;
 }
 
 .team {
-	border-radius: 50%;
+	border-radius: 100%;
 	width: 300px;
 	height: 300px;
-	padding-top: 100px;
+	padding: 20px 20px 20px 20px;
 }
 
-.row {
-    padding-left: 120px;
-    padding-right: 120px;
-    clear: both;
-
+#aboutName {
+	color: blue;
+	font-size: 1.7em;
+	padding-left: 25px;
+	text-indent: -25px;
+	text-align: left;
 }
+
+.container {
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.agreedisagree {
+	padding: 20px;
+	display: block;
+	margin-right: 10px;
+	margin-left:30px;
+}
+
+#theory_header {
+	font-size: 4em;
+}
+#go_to_test a,
+h2              {
+	font-size: 1.5em;
+	color: white;
+}
+
